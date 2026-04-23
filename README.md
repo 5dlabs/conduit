@@ -6,7 +6,7 @@
 
 ## What is Conduit?
 
-Conduit replaces session-based decentralized RPC access (Pocket Network, etc.) with a lease-based model that enables direct consumer-to-provider connections with no gateway proxy.
+Conduit uses a lease-based model for decentralized RPC and LLM inference access, enabling direct consumer-to-provider connections without a gateway proxy.
 
 **For providers**: Register your endpoint with one transaction. Start earning $CDT from excess capacity.
 
@@ -23,15 +23,17 @@ Conduit replaces session-based decentralized RPC access (Pocket Network, etc.) w
 6. Settlement Oracle batches payments to providers
 ```
 
-## Key differences from Pocket Network
+## Why lease-based access
 
-| | Pocket | Conduit |
-|--|--------|---------|
+Conduit is designed around time-based leases and direct provider connectivity.
+
+| | Traditional session/gateway model | Conduit |
+|--|-----------------------------------|---------|
 | Access model | Per-request sessions | Time-based leases |
-| Request path | Consumer → Gateway → Relay Miner → Node | Consumer → Provider |
-| Provider setup | Relay miner + full node + PATH config | `registerEndpoint()` + stake |
-| Auth overhead | Sign every relay | JWT in header |
-| Gas cost | Per-session activity | Batched settlements |
+| Request path | Consumer → Gateway/Relay → Node | Consumer → Provider |
+| Provider setup | Multi-component relay stack | `registerEndpoint()` + stake |
+| Auth overhead | Frequent per-request signing | JWT in header |
+| Settlement pattern | Ongoing per-session activity | Batched settlements |
 
 ## Project structure
 
